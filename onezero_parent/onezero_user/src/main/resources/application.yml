@@ -1,0 +1,32 @@
+server: 
+  port: 9008
+spring: 
+  application:  
+    name: onezero-user #指定服务名
+  datasource:  
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.25.132:3306/tensquare_user?characterEncoding=UTF8
+    username: root
+    password: 12345
+  jpa: 
+    database: MySQL
+    show-sql: true
+  redis:
+    host: 192.168.25.132
+  rabbitmq:
+    host: 192.168.25.132
+jwt:
+  config:
+    key: jack
+    ttl: 3600000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6868/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: onezero-user9008
+
+
+
+

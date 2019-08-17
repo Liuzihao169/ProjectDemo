@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="onezero_article" />
+        <module name="onezero_base" />
+        <module name="onezero_common" />
+        <module name="onezero_eureka" />
+        <module name="onezero_friends" />
+        <module name="onezero_gathering" />
+        <module name="onezero_manager" />
+        <module name="onezero_qa" />
+        <module name="onezero_recruit" />
+        <module name="onezero_serach" />
+        <module name="onezero_sms" />
+        <module name="onezero_spit" />
+        <module name="onezero_user" />
+        <module name="onezero_web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="onezero_article" target="1.8" />
+      <module name="onezero_base" target="1.8" />
+      <module name="onezero_common" target="1.8" />
+      <module name="onezero_eureka" target="1.8" />
+      <module name="onezero_friends" target="1.8" />
+      <module name="onezero_gathering" target="1.8" />
+      <module name="onezero_manager" target="1.8" />
+      <module name="onezero_parent" target="1.8" />
+      <module name="onezero_qa" target="1.8" />
+      <module name="onezero_recruit" target="1.8" />
+      <module name="onezero_serach" target="1.8" />
+      <module name="onezero_sms" target="1.8" />
+      <module name="onezero_spit" target="1.8" />
+      <module name="onezero_user" target="1.8" />
+      <module name="onezero_web" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

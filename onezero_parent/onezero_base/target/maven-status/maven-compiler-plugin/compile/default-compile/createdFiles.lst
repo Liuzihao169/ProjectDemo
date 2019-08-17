@@ -1,0 +1,8 @@
+com\onezero\base\config\MyConfig.class
+com\onezero\base\controller\LabelController.class
+com\onezero\base\entity\Label.class
+com\onezero\base\controller\BaseExceptionHandler.class
+com\onezero\base\service\LabelService.class
+com\onezero\base\dao\LabelRepository.class
+com\onezero\base\service\LabelService$1.class
+com\onezero\base\BaseApplication9001.class

@@ -1,0 +1,13 @@
+server:
+  port: 9090
+spring:
+  rabbitmq:
+    host: 192.168.25.132
+  application:
+    name: onezero_sms #短信微服务
+aliyun:
+  sms:
+    accessKeyId: LTAIuO9rkM2UANBt
+    accessKeySecret: GSkn1gcs0hGkkc2WTHA64kxcjOsZ3I
+    template_code: SMS_171192599
+    sign_name: 一零社交项目个人短信

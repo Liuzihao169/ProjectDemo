@@ -1,0 +1,13 @@
+com\onezero\qa\controller\ProblemController.class
+com\onezero\qa\controller\ReplyController.class
+com\onezero\qa\pojo\Problem.class
+com\onezero\qa\controller\BaseExceptionHandler.class
+com\onezero\qa\QAApplication9003.class
+com\onezero\qa\dao\ReplyDao.class
+com\onezero\qa\service\ReplyService.class
+com\onezero\qa\service\ProblemService$1.class
+com\onezero\qa\pojo\Reply.class
+com\onezero\qa\service\ReplyService$1.class
+com\onezero\qa\client\LableServiceClient.class
+com\onezero\qa\dao\ProblemDao.class
+com\onezero\qa\service\ProblemService.class

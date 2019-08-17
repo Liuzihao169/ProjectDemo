@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/onezero_article/onezero_article.iml" filepath="$PROJECT_DIR$/onezero_article/onezero_article.iml" />
+      <module fileurl="file://$PROJECT_DIR$/onezero_base/onezero_base.iml" filepath="$PROJECT_DIR$/onezero_base/onezero_base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/onezero_common/onezero_common.iml" filepath="$PROJECT_DIR$/onezero_common/onezero_common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/onezero_eureka/onezero_eureka.iml" filepath="$PROJECT_DIR$/onezero_eureka/onezero_eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/onezero_friends/onezero_friends.iml" filepath="$PROJECT_DIR$/onezero_friends/onezero_friends.iml" />
+      <module fileurl="file://$PROJECT_DIR$/onezero_gathering/onezero_gathering.iml" filepath="$PROJECT_DIR$/onezero_gathering/onezero_gathering.iml" />
+      <module fileurl="file://$PROJECT_DIR$/onezero_manager/onezero_manager.iml" filepath="$PROJECT_DIR$/onezero_manager/onezero_manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/onezero_parent.iml" filepath="$PROJECT_DIR$/onezero_parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/onezero_qa/onezero_qa.iml" filepath="$PROJECT_DIR$/onezero_qa/onezero_qa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/onezero_recruit/onezero_recruit.iml" filepath="$PROJECT_DIR$/onezero_recruit/onezero_recruit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/onezero_serach/onezero_serach.iml" filepath="$PROJECT_DIR$/onezero_serach/onezero_serach.iml" />
+      <module fileurl="file://$PROJECT_DIR$/onezero_sms/onezero_sms.iml" filepath="$PROJECT_DIR$/onezero_sms/onezero_sms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/onezero_spit/onezero_spit.iml" filepath="$PROJECT_DIR$/onezero_spit/onezero_spit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/onezero_user/onezero_user.iml" filepath="$PROJECT_DIR$/onezero_user/onezero_user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/onezero_web/onezero_web.iml" filepath="$PROJECT_DIR$/onezero_web/onezero_web.iml" />
+    </modules>
+  </component>
+</project>

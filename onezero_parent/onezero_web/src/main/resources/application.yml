@@ -1,0 +1,24 @@
+server:
+  port: 9012
+spring:
+  application:
+    name: onezero-web
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6868/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: onezero-web9012
+###配置网关
+zuul:
+  routes:
+    onezerobase:
+      path: /base/**
+      serviceId: onezero-base
+    onezerouser:
+      path: /user/**
+      serviceId: onezero-user
+    onezerfriend: #交友
+      path: /friend/** #配置请求URL的请求规则
+      serviceId: onezero‐friends #指定Eureka注册中心中的服务id
