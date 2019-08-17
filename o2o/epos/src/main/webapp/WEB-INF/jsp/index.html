@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>o2o后台管理系统</title>
+    <script src="../js/jQ.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" >
+    <script src="../js/bootstrap.min.js"></script>
+
+</head>
+<style>
+    html{
+        height: 100%;
+    }
+    body{
+        height: 100%;
+        background: #eaeaea;
+        background: url("../images/1.jpg") no-repeat;
+    }
+    /*test*/
+    [class*="col-"]{
+        height: 100%;
+        /*border:1px solid rgba(204, 204, 204, 0.49);*/
+    }
+    .scroll{
+        height: 100%;
+    }
+    img{
+        margin:0;
+        padding:0;
+        border:none;
+        width: 100%;
+        display:block;
+    }
+    .first{
+        position: relative;
+        height: 15.5%;
+        background: url(../images/2.jpg) no-repeat;
+    }
+    .first h1{
+        margin:0;
+        padding:0;
+        line-height: 65px;
+    }
+    .second{
+        height: 84.5%;
+        width:100%;
+    }
+    /*左边的nav*/
+    .second .left-box{
+        width:16%;
+        padding:0;
+        background: url(../images/3.jpg) no-repeat;
+        overflow: hidden;
+    }
+    .second .left-box dd{
+        cursor: pointer;
+        font-size:15px;
+        padding-left: 15px;
+        padding-right:15px;
+    }
+    .second .left-box dd.current{
+        background: rgba(145, 177, 252, 0.84);
+    }
+    .second .left-box dd span{
+        padding-left:20px;
+    }
+    .second .left-box dd a{
+        color: rgba(0, 0, 0, 0.82);
+        text-decoration: none;
+    }
+    /*右边的界面*/
+    .second .right-box{
+        padding:0;
+        height: 100%;
+    }
+    .second .right-box div{
+        height: auto;
+    }
+    .second .right-box  li th{
+        text-align:center;
+    }
+     .modal-content{
+         background: url("../images/02.jpg") no-repeat;
+    }
+     /*订单列表中的样式*/
+    .pay .spans span{
+        display:inline-block;
+        width: 76.75px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        border:0.1px solid rgba(138, 43, 226, 0.32);
+    }
+    #outdoor{
+        display:none;
+        position: relative;
+        height: 60px;
+        width: 614px;
+        border:0.1px solid rgba(138, 43, 226, 0.32);
+        margin-left: 2.6%;
+    }
+     .indoor{
+         position: absolute;
+         border:0.1px solid rgba(138, 43, 226, 0.32);
+         height: 40px;
+         width: 580px;
+         margin:10px auto;
+   }
+    .indoor span{
+        display:inline-block;
+        width: 193px;
+        height:40px ;
+        border-right:0.1px solid rgba(138, 43, 226, 0.32);
+        text-align:center;
+        line-height: 40px;
+    }
+    #out{
+        display:none;
+        position: relative;
+        height: 60px;
+        width: 614px;
+        border:0.1px solid rgba(204, 204, 204, 0.76);
+        margin-left: 2.6%;
+    }
+    /*用户列表 和 字典列表部分*/
+     .table thead tr th{
+        text-align:center;
+    }
+    .table tbody tr:hover{
+        background: rgba(145, 177, 252, 0.84);
+    }
+</style>
+<body>
+
+<div class="scroll container-fluid">
+    <div class="row first">
+        <div class="header col-sm-12">
+            <h1 class="text-center">O2O后台管理系统</h1>
+            <p>
+                <button type="button" class="btn btn-xs btn-primary"  data-toggle="modal" data-target="#Modal1">修改密码</button>
+                <button type="button" class="btn btn-xs btn-info pull-right"><a href="login.html" target="_blank" style="text-decoration: none;color:white;">退出登录</a></button>
+        </div>
+        <!--修改密码的模态框-->
+        <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="Modal1Label" >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="Modal1Label">菜品信息修改</h4>
+                    </div>
+                    <div class="modal-body ">
+                        <div class="container" style="height: auto;width: 90%;">
+                            <form class="form-horizontal" role="form">
+
+                                <div class="form-group">
+                                    <label class="col-xs-2 control-label text-right" style="padding-top:7px;">旧密码</label>
+                                    <div class="col-xs-10" >
+                                        <input type="password" class="form-control" placeholder="旧密码">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-xs-2 control-label text-right " style="padding-top:7px;">新密码</label>
+                                    <div class="col-sm-10" >
+                                        <input type="password" class="form-control" placeholder="新密码">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-xs-2 control-label text-right" style="padding-left: 2px;">确定密码</label>
+                                    <div class="col-xs-10" >
+                                        <input type="password" class="form-control" placeholder="确定密码">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12" >
+                                        <button type="button" class="btn btn-sm btn-success center-block">确认修改</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--第二部分-->
+    <div class="row second">
+        <!--左边的nav-->
+        <div class="left-box col-sm-2" id="leftBox">
+            <dl style="margin-top:12px;">
+                <dd class="current"><span style="padding-left: 6px;">+</span><strong>菜品管理</strong></dd>
+                <dd class="" style="display:none;"><span>-</span><a href="#">菜品列表</a></dd>
+                <dd class="" style="display:none;"><span>-</span><a href="#">添加菜品</a></dd>
+            </dl>
+            <dl>
+                <dd class=""><span  style=";padding-left: 6px;">+</span><strong>订单管理</strong></dd>
+                <dd class=""  style="display:none;"><span>-</span><a href="#">订单列表</a></dd>
+            </dl>
+            <dl>
+                <dd class=""><span  style=";padding-left: 6px;">+</span><strong>用户管理</strong></dd>
+                <dd class=""  style="display:none;"><span>-</span><a href="#">用户列表</a></dd>
+            </dl>
+            <dl>
+                <dd class=""><span  style=";padding-left: 6px;">+</span><strong>字典管理</strong></dd>
+                <dd class=""  style="display:none;"><span>-</span><a href="#">字典列表</a></dd>
+                <dd class=""  style="display:none;"><span>-</span><a href="#">字典扩充</a></dd>
+            </dl>
+        </div>
+        <!--右边的界面-->
+        <div class="right-box col-sm-10" id="rightBox">
+
+            <div class="show"  style="font-weight: bold;font-size:30px;text-align: center;line-height:450px;">
+                欢迎来到O2O-管理系统
+            </div>
+<!--菜品列表对应的界面            -->
+            <div class="hidden">
+                      <ul style="list-style: none;margin-top:30px;width: 100%;height: auto;" class="container">
+                          <li style="display:inline-block;font-size:18px;margin-left:210px;"><strong>搜索</strong></li>
+                          <li style="display:inline-block;"><input type="text"  placeholder="请键入关键字" style="height: 32px;"></li>
+                          <li style="display:inline-block;">
+                              <select class="form-control" >
+                                  <option>菜品类型</option>
+                                      <option></option>
+                                      <option></option>
+                                      <option></option>
+                              </select>
+                          </li>
+                          <li style="display:inline-block;"><button type="submit" class="btn btn-info">GO</button></li>
+                          <li style="width: 85%;height: auto;margin-top:40px;" class="table-responsive container">
+                                  <table class="table table-bordered">
+                                      <thead>
+                                      <tr style="font-size:14px;">
+                                          <th>id</th>
+                                          <th>菜品类型</th>
+                                          <th>菜名</th>
+                                          <th>单价</th>
+                                          <th>下单次数</th>
+                                          <th>图片</th>
+                                          <th>库存</th>
+                                          <th>上下架</th>
+                                          <th>操作</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
+                                      <tr style="font-size:14px;">
+                                          <td>3</td>
+                                          <td>#</td>
+                                          <td>##</td>
+                                          <td>12</td>
+                                          <td>3</td>
+                                          <td><img src="images/01.jpg.jpg" style="width: 21px;height: 21px;"></td>
+                                          <td>4</td>
+                                          <td>#</td>
+                                          <td><button type="button" class="btn btn-info btn-xs" id="btn1">删除</button>
+                                              <button type="button" class="btn btn-danger btn-xs">修改</button>
+                                          </td>
+                                      </tr>
+                                      <tr  style="font-size:14px;">
+                                          <td>4</td>
+                                          <td>#</td>
+                                          <td>#</td>
+                                          <td>43</td>
+                                          <td>4</td>
+                                          <td>
+                                              <img src="images/02.jpg.jpg" alt="图片" style="width: 20px;height: 20px;">
+                                          </td>
+                                          <td>4</td>
+                                          <td>#</td>
+                                          <td>
+                                              <button type="button" class="btn btn-info btn-xs" id="btn2">删除</button>
+                                              <button type="button" class="btn btn-danger btn-xs"
+                                                      data-toggle="modal" data-target="#myModal" >修改</button>
+                                          </td>
+                                        <!--删除的JavaScript部分-->
+                                          <script>
+                                              //菜品列表中的删除按钮的设置
+                                              var btn1 = document.getElementById("btn1");
+                                              var btn2 = document.getElementById("btn2");
+                                              btn1.onclick = function () {
+                                                  alert("确认删除");
+                                              }
+                                              btn2.onclick = function () {
+                                                  alert("确认删除");
+                                              }
+                                          </script>
+
+                                          <!--修改的模态框-->
+                                          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+                                              <div class="modal-dialog" role="document">
+                                                  <div class="modal-content" style="display:block;height: auto;">
+                                                      <div class="modal-header">
+                                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                          <h4 class="modal-title" id="myModalLabel">菜品信息修改</h4>
+                                                      </div>
+                                                      <div class="modal-body ">
+                                                          <div class="container" style="height: auto;width: 100%;">
+                                                              <form class="form-horizontal" role="form">
+                                                                  <div class="form-group" style="height:auto;">
+                                                                      <label class="col-xs-2 control-label text-right" style="padding-top:7px;">菜品类型</label>
+                                                                      <div class="col-xs-10" style="margin-bottom: 10px;">
+                                                                          <select class="form-control">
+                                                                              <option>菜品类型</option>
+                                                                              <option></option>
+                                                                          </select>
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="form-group">
+                                                                      <label class="col-xs-2 control-label text-right" style="padding-top:7px;">图片</label>
+                                                                      <div class="col-xs-10"  style="margin-bottom: 10px;">
+                                                                          <input type="file" id="files">
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="form-group">
+                                                                      <label class="col-xs-2 control-label text-right" style="padding-top:7px;">菜名</label>
+                                                                      <div class="col-xs-10"  style="margin-bottom: 10px;">
+                                                                          <input type="text" class="form-control" placeholder="菜名">
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="form-group">
+                                                                      <label class="col-xs-2 control-label text-right " style="padding-top:7px;">单价</label>
+                                                                      <div class="col-sm-10"  style="margin-bottom: 10px;">
+                                                                          <input type="text" class="form-control" placeholder="单价">
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="form-group">
+                                                                      <label class="col-xs-2 control-label text-right" style="padding-top:7px;">下单次数</label>
+                                                                      <div class="col-xs-10"  style="margin-bottom: 10px;">
+                                                                          <input type="text" class="form-control" placeholder="下单次数">
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="form-group">
+                                                                      <label class="col-xs-2 control-label text-right" style="padding-top:7px;">库存</label>
+                                                                      <div class="col-xs-10"  style="margin-bottom: 10px;">
+                                                                          <input type="text" class="form-control" placeholder="库存">
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="form-group">
+                                                                      <label class="col-xs-2 control-label text-right " style="padding-top:7px;">是否上架</label>
+                                                                      <div class="col-xs-10"  style="margin-bottom: 10px;">
+                                                                          <select class="form-control">
+                                                                              <option>是</option>
+                                                                              <option>否</option>
+                                                                          </select>
+                                                                      </div>
+                                                                  </div>
+                                                              </form>
+                                                          </div>
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                          <button type="button" class="btn btn-primary">Save changes</button>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <script>
+                                                  $('#myInput').on('shown.bs.modal', function () {
+                                                      $('#myInput').focus()
+                                                  })
+                                                  console.log(3);
+                                          </script>
+                                      </tr>
+                                      </tbody>
+                                  </table>
+                          </li>
+                      </ul>
+            </div>
+<!--添加菜品对应的界面-->
+            <div class="hidden">
+                 <div class="container" style="padding:0 100px;">
+                     <div class="page-header col-xs-12" style="margin-top: 10px;margin-bottom:3px;">
+                         <h4 style="margin:0;"><b>添加菜品</b></h4>
+                     </div>
+                     <form role="form" class="form-horizontal" >
+                         <div class="form-group" style="height:auto;">
+                             <label class="col-xs-2 control-label text-right" style="padding-top:7px;">菜品类型</label>
+                             <div class="col-xs-10" style="margin-bottom: 5px;">
+                                 <select class="form-control">
+                                     <option>菜品类型</option>
+                                     <option></option>
+                                 </select>
+                             </div>
+                         </div>
+                         <div class="form-group" style="margin-bottom:10px;">
+                             <label class="col-xs-2 control-label text-right" style="padding-top:3px;">图片</label>
+                             <div class="col-xs-10"  style="margin-bottom: 5px;">
+                                 <input type="file" id="file">
+                             </div>
+                         </div>
+                         <div class="form-group">
+                             <label class="col-xs-2 control-label text-right" style="padding-top:7px;">菜名</label>
+                             <div class="col-xs-10"  style="margin-bottom: 5px;">
+                                 <input type="text" class="form-control" placeholder="菜名">
+                             </div>
+                         </div>
+                         <div class="form-group">
+                             <label class="col-xs-2 control-label text-right " style="padding-top:7px;">单价</label>
+                             <div class="col-sm-10"  style="margin-bottom: 5px;">
+                                 <input type="text" class="form-control" placeholder="单价">
+                             </div>
+                         </div>
+                         <div class="form-group">
+                             <label class="col-xs-2 control-label text-right" style="padding-top:7px;">下单次数</label>
+                             <div class="col-xs-10"  style="margin-bottom: 5px;">
+                                 <input type="text" class="form-control" placeholder="下单次数">
+                             </div>
+                         </div>
+                         <div class="form-group">
+                             <label class="col-xs-2 control-label text-right" style="padding-top:7px;">库存</label>
+                             <div class="col-xs-10"  style="margin-bottom: 5px;">
+                                 <input type="text" class="form-control" placeholder="库存">
+                             </div>
+                         </div>
+                         <div class="form-group" style="margin-bottom: 5px;">
+                             <label class="col-xs-2 control-label text-right " style="padding-top:7px;">是否上架</label>
+                             <div class="col-xs-10"  style="margin-bottom: 3px;">
+                                 <select class="form-control">
+                                     <option>是</option>
+                                     <option>否</option>
+                                 </select>
+                             </div>
+                         </div>
+                     </form>
+                     <div class="modal-footer" style="padding-top:5px;">
+                         <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                         <button type="button" class="btn btn-primary btn-sm">Save changes</button>
+                     </div>
+                 </div>
+            </div>
+
+            <div class="hidden"  style="font-weight: bold;font-size:30px;text-align: center;line-height:450px;">
+                欢迎来到O2O-管理系统
+            </div>
+<!--订单列表对应的界面     -->
+            <div class="hidden">
+                <div class="container pay" style="width: 80%;margin:80px 60px; ">
+                    <div class="spans container">
+                        <span style="width: 46.75px;"><strong>id</strong></span><span><strong>订单编号</strong></span><span><strong>用户名</strong></span><span><strong>配送地址</strong></span><span style="width:91.75px;"><strong>用户手机</strong></span><span><strong>时间</strong></span><span><strong>交易金额</strong></span><span style="width: 91.75px;"><strong>操作</strong></span>
+                    </div>
+                    <div class="spans container">
+                        <span style="width: 46.75px;">3</span><span>##</span><span>#</span><span>##</span><span style="width:91.75px;">13453333333</span><span>32</span><span>33.98</span><span style="width: 91.75px;"><button type="button" class="btn btn-info btn-xs" id="button1">详情</button><button type="button" class="btn btn-default btn-xs" id="del1">删除</button></span>
+                    </div>
+                    <div class="outdoor container " id="outdoor">
+                        <div class="indoor" id="indoor">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                    <div class="spans container">
+                        <span style="width: 46.75px;">4</span><span>##</span><span>###</span><span>##</span><span style="width:91.75px;">13666797333</span><span>32</span><span>66.98</span><span style="width: 91.75px;"><button type="button" class="btn btn-info btn-xs" id="button2">详情</button><button type="button" class="btn btn-default btn-xs" id="del2">删除</button></span>
+                    </div>
+                    <div class="outdoor container" id="out">
+                        <div class="indoor" id="in">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                    <!--修改和删除的js部分-->
+                    <script>
+                        // 修改(按钮)部分
+                        var button1= document.getElementById("button1");
+                        var button2 = document.getElementById("button2");
+                        var outdoor = document.getElementById("outdoor");
+                        var out = document.getElementById("out");
+                        button1.onclick = function () {
+                            if (outdoor.style.display === "none") {
+                                outdoor.style.display = "block";
+                            } else {
+                                outdoor.style.display = "none";
+                            }
+                        }
+                        button2.onclick = function () {
+                            if (out.style.display === "none") {
+                                out.style.display = "block";
+                            } else {
+                                out.style.display = "none";
+                            }
+                        }
+                        // 删除(按钮)的部分
+                        var del1 = document.getElementById("del1");
+                        var del2 = document.getElementById("del2");
+                        del1.onclick = function () {
+                            alert("确认删除");
+                        }
+                        del2.onclick = function () {
+                            alert("确认删除");
+                        }
+                    </script>
+                </div>
+            </div>
+            <div class="hidden"  style="font-weight: bold;font-size:30px;text-align: center;line-height:450px;">
+                欢迎来到O2O-管理系统
+            </div>
+<!--用户列表对应的界面      -->
+            <div class="hidden">
+                <div class="container" style="padding:100px 200px;">
+                    <table class="table table-bordered table-responsive ">
+                          <thead>
+                             <tr >
+                                 <th>id</th>
+                                 <th>账号</th>
+                                 <th>密码</th>
+                                 <th>用户级别</th>
+                                 <th>操作</th>
+                             </tr>
+                          </thead>
+                          <tbody>
+                             <tr>
+                                 <td>01</td>
+                                 <td>234343</td>
+                                 <td>#</td>
+                                 <td>3</td>
+                                 <td>
+                                     <button type="button" class="btn btn-primary btn-xs btn-block" id="userDel1">删除</button>
+                                 </td>
+                             </tr>
+                             <tr>
+                                 <td>02</td>
+                                 <td>755343</td>
+                                 <td>#</td>
+                                 <td>4</td>
+                                 <td>
+                                     <button type="button" class="btn btn-primary btn-xs btn-block" id="userDel2">删除</button>
+                                 </td>
+                             </tr>
+                            <!--用户列表的JavaScript部分-->
+                             <script>
+                                 var userDel1 = document.getElementById("userDel1");
+                                 var userDel2 = document.getElementById("userDel2");
+                                 userDel1.onclick = function () {
+                                     alert("确认删除");
+                                 }
+                                 userDel2.onclick = function () {
+                                     alert("确认删除");
+                                 }
+                             </script>
+                          </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="hidden"  style="font-weight: bold;font-size:30px;text-align: center;line-height:450px;">
+                欢迎来到O2O-管理系统
+            </div>
+ <!--字典列表                -->
+            <div class="hidden">
+                <div class="container" style="padding:100px 120px;">
+                    <table class="table table-bordered table-responsive ">
+                        <thead>
+                        <tr>
+                            <th>字典ID</th>
+                            <th>字典编号</th>
+                            <th>字典类型</th>
+                            <th>字典类型值</th>
+                            <th>字典类型编号</th>
+                            <th>字典状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>03</td>
+                            <td>234343</td>
+                            <td>#</td>
+                            <td>3</td>
+                            <td>55533</td>
+                            <td>#</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-xs btn-block" id="decDel1">删除</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>04</td>
+                            <td>755343</td>
+                            <td>#</td>
+                            <td>4</td>
+                            <td>35970</td>
+                            <td>#</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-xs btn-block" id="decDel2">删除</button>
+                            </td>
+                        </tr>
+                        <!--字典列表的JavaScript部分-->
+                        <script>
+                            var decDel1 = document.getElementById("decDel1");
+                            var decDel2 = document.getElementById("decDel2");
+                            decDel1.onclick = function () {
+                                alert("确认删除");
+                            }
+                            decDel2.onclick = function () {
+                                alert("确认删除");
+                            }
+                        </script>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+  <!--字典扩充-->
+            <div class="hidden">
+                <div class="container"  style="padding:0 100px;">
+                   <div class="page-header" style="margin-bottom: 0;margin-top:30px;">
+                       <h4 style="margin-top:0;">字典扩充</h4>
+                   </div>
+                    <div class="modal-body">
+                        <form role="form" class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-xs-2">
+                                    <label class="control-label pull-right">字典ID</label>
+                                </div>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" placeholder="ID">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2">
+                                    <label class="control-label pull-right">字典编号</label>
+                                </div>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" placeholder="字典编号">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2">
+                                    <label class="control-label pull-right">字典类型</label>
+                                </div>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" placeholder="字典类型">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2" style="padding-left: 0;">
+                                    <label class="control-label pull-right">字典类型值</label>
+                                </div>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" placeholder="字典类型值">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2" style="position: relative;padding:0;">
+                                    <label class="control-label pull-left" style="position: absolute;">字典类型编号</label>
+                                </div>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" placeholder="字典类型编号">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2">
+                                    <label class="control-label pull-right">字典状态</label>
+                                </div>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" placeholder="字典状态">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-sm">Save changes</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = function () {
+        function identify(id) {
+            return document.getElementById(id);
+        }
+
+        //菜品列表中的删除按钮的设置
+       identify("btn1").onclick = function () {
+           alert("确认删除");
+        }
+        identify("btn2").onclick = function () {
+            alert("确认删除");
+        }
+        //菜品列表--模态框中的图片选择的格式化
+        identify("files").onchange = function () {
+            var path=this.value;//得到文件路径
+            var Upper=path.substr(path.lastIndexOf(".")).toUpperCase();//后缀名变成大写
+            if (".JPG" === Upper || ".PNG" === Upper  || ".BMP" === Upper  || ".JPEG" === Upper  || ".GIF"=== Upper
+                || ".PSD" === Upper  || ".SVG" === Upper  || ".EMF" === Upper) {
+
+            }else{
+                this.value = "";
+                alert("图片格式不正确，请重输");
+            }
+        }
+        //添加菜品--模态框中的图片选择的格式化
+        identify("file").onchange = function () {
+            var path=this.value;//得到文件路径
+            var Upper=path.substr(path.lastIndexOf(".")).toUpperCase();//后缀名变成大写
+            if (".JPG" === Upper || ".PNG" === Upper  || ".BMP" === Upper  || ".JPEG" === Upper  || ".GIF"=== Upper
+                || ".PSD" === Upper  || ".SVG" === Upper  || ".EMF" === Upper) {
+
+            }else{
+                this.value = "";
+                alert("图片格式不正确，请重输");
+            }
+        }
+
+        //tab选项卡部分
+        var dls = identify("leftBox").children;//获取left-box所有的孩子dl
+        var dds = document.getElementsByTagName("dd");//获取所有的dd 元素;
+        var boxes = identify("rightBox").children;
+        for(var i=0;i<dls.length;i++){
+            dls[i].children[0].children[0].onclick = function () {//当前对象为第一个span
+                if(this.parentNode.parentNode.children[1].style.display === "block") {
+                    this.parentNode.parentNode.children[1].style.display = "none";
+                    this.parentNode.parentNode.children[2].style.display = "none";
+                }else{
+                    this.parentNode.parentNode.children[1].style.display = "block";
+                    this.parentNode.parentNode.children[2].style.display = "block";
+                }
+
+            }
+            for(var j=0;j<dds.length;j++){
+                dds[j].index = j;
+                dds[j].onclick = function(){
+                    //清除其他所有的元素的类
+                    for(var k=0;k<dds.length;k++){
+                        boxes[k].className = "hidden";
+                        dds[k].className = "";
+                    }
+                    //保留本元素的类
+                    boxes[this.index].className="show";
+                    this.className = "current";
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

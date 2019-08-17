@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kuake.dao.OrderItemMapper">
+	
+	<!-- 通过订单id查询订单项 -->
+	<select id="findOrderItemByOrderId" parameterType="long" resultType="com.kuake.pojo.OrderItem">
+		
+	</select>
+	
+	<!-- 通过订单项id查询订单项 -->
+	<select id="findOrderItemById" parameterType="long" resultType="com.kuake.pojo.OrderItem">
+		
+	</select>
+	
+	<!-- 添加订单项 -->
+	<insert id="addOrderItem" parameterType="com.kuake.pojo.OrderItem">
+		
+	</insert>
+	
+	<!-- 通过订单Id删除订单项 -->
+	<delete id="deleteOrderItemByOrderId" parameterType="long">
+		
+	</delete>
+	
+	<!-- 通过订单项id删除订单项 -->
+	<delete id="deletOrderItemById" parameterType="long">
+		
+	</delete>
+	
+</mapper>

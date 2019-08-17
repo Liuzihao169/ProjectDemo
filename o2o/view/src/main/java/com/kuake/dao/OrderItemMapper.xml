@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kuake.dao.OrderItemMapper">
+	
+	
+	
+	<!-- 添加订单项 -->
+	<insert id="saveOrderItem" parameterType="com.kuake.pojo.OrderItem">
+		INSERT INTO orderitems (
+			orderitem_count,
+			orderitem_total,
+			greens_id,
+			order_id
+		)
+		VALUES
+			(#{orderitem_count}, #{orderitem_total},#{greens.greens_id}, #{order.order_id});		
+	</insert>
+</mapper>

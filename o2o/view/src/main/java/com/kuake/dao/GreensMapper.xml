@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kuake.dao.GreensMapper">
+	
+	<!-- 根据code查询数据字典的分类信息表 -->
+	<select id="findCategoryByCode" parameterType="string" resultType="com.kuake.vo.Category">
+		SELECT
+			d.dict_id,
+			d.dict_type_value
+		FROM
+			dict d
+		WHERE
+			d.dict_code = #{dict_ids}
+		AND d.dict_status = 1
+		ORDER BY
+			d.dict_type_code ASC;	
+	</select>
+	<!-- 查询同一类商品的listfindGreensListByTypeCode -->
+	<select id="findGreensListByTypeCode" parameterType="long" resultType="com.kuake.pojo.Greens">
+		SELECT
+			*
+		FROM
+			greens g
+		WHERE
+			g.greens_type = #{typeCode}
+		AND g.greens_status = 1;
+	</select>
+	
+	<!-- 根据商品id查询商品findGreenById -->
+	<select id="findGreenById" parameterType="long" resultType="com.kuake.pojo.Greens">
+		SELECT
+			*
+		FROM
+			greens g
+		WHERE
+			g.greens_id = #{id}
+	</select>
+	<!-- 更新库存数量 updateGreensNum-->
+	<update id="updateGreensNum">
+		UPDATE greens g
+		SET g.greens_count = g.greens_count + #{0},
+		 g.greens_surplus = g.greens_surplus - #{0}
+		WHERE
+			g.greens_id= #{1};		
+	</update>
+</mapper>

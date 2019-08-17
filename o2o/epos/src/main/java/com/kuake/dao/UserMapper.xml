@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kuake.dao.UserMapper">
+	
+	<!-- 查询所有用户 -->
+	<select id="findAll" resultType="com.kuake.pojo.User">
+		SELECT u.user_id,u.user_name,u.user_password,d.dict_type_value user_level 
+		FROM users u
+		LEFT JOIN dict d ON u.user_level=d.dict_id
+	</select>
+	
+	<!-- 通过用户账号和密码查询用户  -->
+	<select id="findUserByVo" parameterType="com.kuake.vo.Vo" resultType="com.kuake.pojo.User">
+		SELECT * FROM users u
+		WHERE u.user_name=#{user_name} AND u.user_password=#{user_password}
+		AND u.user_level IN(
+			SELECT d.dict_id 
+			FROM dict d 
+			WHERE d.dict_code=#{dict_code} AND d.dict_type_code=#{dict_type_code})
+	</select>
+	
+	<!-- 通过用户Id查询订单 -->
+	<delete id="delete" parameterType="long">
+		DELETE FROM users WHERE user_id=#{user_id}
+	</delete>
+	
+</mapper>

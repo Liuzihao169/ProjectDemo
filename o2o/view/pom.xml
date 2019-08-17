@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.kuake</groupId>
+    <artifactId>o2o</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>view</artifactId>
+  <packaging>war</packaging>
+  
+  <dependencies>
+  			<dependency>
+				<groupId>com.kuake</groupId>
+				<artifactId>o2o-public</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+  </dependencies>
+  
+  <build>
+		<!-- 配置了很多插件 -->
+		<plugins>
+			<plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                 <!--    <port>9090</port> -->
+                    <path>/o2o/view</path>
+                    <uriEncoding>UTF-8</uriEncoding>
+                    <server>tomcat7</server>
+                </configuration>
+            </plugin>
+		</plugins>
+		
+		<resources>
+			<resource>
+				 <directory>src/main/java</directory>
+		             <includes>
+		                 <include>**/*.properties</include>
+		                 <include>**/*.xml</include>
+		             </includes>
+            	 <filtering>false</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+		             <includes>
+		                 <include>**/*.properties</include>
+		                 <include>**/*.xml</include>
+		             </includes>
+            	 <filtering>false</filtering>
+			</resource>
+		</resources>
+	</build>
+  	
+</project>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kuake.dao.OrderMapper">
+
+	<!-- 查询所有订单的返回结果类型（一对多） -->
+	<!-- <resultMap type="com.kuake.pojo.Order" id="orderResultMap">
+		<id column="order_id" property="order_id"/>
+		<result column="order_code" property="order_code"/>
+		<result column="order_phone" property="order_phone"/>
+		<result column="order_realname" property="order_realname"/>
+		<result column="order_address" property="order_address"/>
+		<result column="order_total" property="order_total"/>
+		<result column="order_time" property="order_time"/>
+		<result column="order_status" property="order_status"/> -->
+		
+		<!-- 订单与用户的多对一关系 -->
+		<!-- <association property="user" javaType="com.kuake.pojo.User">
+			<id column="user_id" property="user_id"/>
+			<result column="user_name" property="user_name"/>
+		</association> -->
+		
+		<!-- 订单与订单项的一对多关系 -->
+		<!-- <collection property="orderItems" ofType="com.kuake.pojo.OrderItem" column="orderitem_id">
+			<id column="orderitem_id" property="orderitem_id"/>
+			<result column="orderitem_count" property="orderitem_count"/>
+			<result column="orderitem_total" property="orderitem_total"/> -->
+			
+			<!-- 菜品与订单项的多对一关系 -->
+			<!-- <association property="greens" ofType="com.kuake.pojo.Greens" column="greens_id">
+				<id column="greens_id" property="greens_id"/>
+				<result column="greens_name" property="greens_name"/>
+			</association>
+		</collection> -->
+	<!-- </resultMap> -->
+	
+	<!-- 查询所有订单 -->
+<!-- 	<select id="findAll" resultType="com.kuake.pojo.Order">
+		SELECT *FROM orders 
+	</select> -->
+	
+	<!--  添加订单 -->
+	<insert id="saveOrder" parameterType="com.kuake.pojo.Order">
+		<!-- 去出刚刚插入的自增的id -->
+		<selectKey order="AFTER" keyProperty="order_id" resultType="long"  >
+   		select last_insert_id()
+   		</selectKey>
+		INSERT INTO orders (
+			order_code,
+			order_phone,
+			order_realname,
+			order_address,
+			order_total,
+			order_time,
+			order_status,
+			user_id
+		)
+		VALUES
+			(
+			#{order_code},
+			#{order_phone},
+			#{order_realname},
+			#{order_address},
+			#{order_total},
+			#{order_time},
+			#{order_status},
+			#{user.user_id})		
+	</insert>
+	<!--findOrderListByUid 查询改用户的所有订单 -->
+	<resultMap type="com.kuake.pojo.Order" id="order">
+		<id column="order_id" property="order_id"/>
+		<result column="order_code" property="order_code"/>
+		<result column="order_total" property="order_total"/>
+		<result column="order_time" property="order_time"/>
+		<result column="order_status" property="order_status"/>
+		<!-- 订单与订单项目一对多 -->
+		<collection property="orderItems" ofType="com.kuake.pojo.OrderItem">
+			<id column="orderitem_id" property="orderitem_id"/>
+			<result column="orderitem_count" property="orderitem_count"/>
+			
+			<!-- 菜品与订单项 一对多 -->
+			<association property="greens" javaType="com.kuake.pojo.Greens">
+				<id column="greens_id" property="greens_id"/>
+				<result column="greens_name" property="greens_name"/>
+				<result column="greens_price" property="greens_price"/>
+			</association>
+		</collection>
+		<!--  -->
+	</resultMap>
+	<select id="findOrderListByUid" parameterType="long" resultMap="order"> 
+		SELECT
+			o.order_id,
+			order_code,
+			order_total,
+			order_status,
+			order_time,
+			orderitem_count,
+			orderitem_id,
+			greens_name,
+			greens_price,
+			g.greens_id
+		FROM
+			orders o
+		LEFT JOIN orderitems oi ON oi.order_id = o.order_id
+		LEFT JOIN greens g ON oi.greens_id = g.greens_id
+		WHERE
+			o.user_id = #{user_id}	ORDER BY o.order_time DESC	
+	</select>
+	
+</mapper>

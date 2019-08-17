@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kuake.dao.GreensMapper">
+	
+	<!-- 查询所有菜品信息 -->
+	<select id="findAll" resultType="com.kuake.pojo.Greens">
+		
+	</select>
+	
+	<!-- 通过菜品类型查询菜品 -->
+	<select id="findGreensByType" parameterType="string" resultType="com.kuake.pojo.Greens">
+		SELECT g.greens_id,d.dict_type_value greens_type,g.greens_name,g.greens_price,
+			g.greens_count,g.greens_picture,g.greens_surplus,g.greens_status
+		FROM greens g 
+		LEFT JOIN dict d ON g.greens_type=d.dict_id
+		<where>
+			<if test="_parameter!=null and _parameter!=''">
+				d.dict_type_code=#{dict_type_code}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 查询所有字典表信息 -->
+	<select id="findGreesById" parameterType="long" resultType="com.kuake.pojo.Greens">
+		SELECT * FROM greens WHERE greens_id=#{greens_id};
+	</select>
+	
+	<!-- 添加一条菜品记录 -->
+	<insert id="addGreens" parameterType="com.kuake.pojo.Greens">
+		INSERT  INTO greens (greens_type,greens_name,greens_price,greens_count,
+						greens_picture,greens_surplus,greens_status)
+		VALUES (#{greens_type},#{greens_name},#{greens_price},#{greens_count},#{greens_picture},#{greens_surplus},#{greens_status});
+	</insert>
+	
+	<!-- 更新菜品信息 -->
+	<update id="updateGreens" parameterType="com.kuake.pojo.Greens">
+		UPDATE greens g 
+		<set>
+			<if test="greens_type != null and greens_type != ''">
+				greens_type=#{greens_type},
+			</if>
+			<if test="greens_name != null and greens_name != ''">
+				greens_name=#{greens_name},
+			</if>
+			<if test="greens_picture != null and greens_picture != ''">
+				greens_picture=#{greens_picture},
+			</if>
+			<if test="greens_count != null and greens_count != ''">
+				greens_count=#{greens_count},
+			</if>
+			<if test="greens_price != null and greens_price != ''">
+				greens_price=#{greens_price},
+			</if>
+			<if test="greens_surplus != null and greens_surplus != ''">
+				greens_surplus=#{greens_surplus},
+			</if>
+			<if test="greens_status != null and greens_status != ''">
+				greens_status=#{greens_status}
+			</if>
+		</set>
+		WHERE g.greens_id=#{greens_id}
+	</update>
+	
+	<!-- 通过菜品ID删除一条菜品信息 -->
+	<delete id="deleteByVo" parameterType="com.kuake.vo.Vo">
+		DELETE FROM greens 
+		<where>
+			<if test="greens_id != null and greens_id != ''">
+				AND greens_id=#{greens_id}
+			</if>
+			<if test="greens_type != null and greens_type != ''">
+				AND greens_type=#{greens_type}
+			</if>
+		</where>
+	</delete>
+	
+</mapper>

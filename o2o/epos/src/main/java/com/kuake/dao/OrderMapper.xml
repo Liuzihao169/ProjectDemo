@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kuake.dao.OrderMapper">
+	
+	<!-- 订单与订单项的一对多关系 -->
+	<resultMap type="com.kuake.pojo.Order" id="orderResultMap">
+		<id column="order_id" property="order_id"/>
+		<result column="order_id" property="order_id"/>
+		<result column="order_phone" property="order_phone"/>
+		<result column="order_realname" property="order_realname"/>
+		<result column="order_address" property="order_address"/>
+		<result column="order_total" property="order_total"/>
+		<result column="order_time" property="order_time"/>
+		<result column="order_status" property="order_status"/>
+		
+		<!-- 订单与用户的多对一关系  -->
+		<association property="user" javaType="com.kuake.pojo.User" column="user_id">
+			<id column="user_id" property="user_id"/>
+			<result column="user_name" property="user_name"/>
+		</association>
+		
+		<!-- 订单与订单项的一对多关系 -->
+		<collection property="orderItems" ofType="com.kuake.pojo.OrderItem" column="orderitme_id">
+			<id column="orderitem_id" property="orderitem_id"/>
+			<result column="orderitem_count" property="orderitem_count"/>
+			<result column="orderitem_total" property="orderitem_total"/>
+			
+			<!-- 订单项与菜品的多对一关系 -->
+			<association property="greens" javaType="com.kuake.pojo.Greens" column="greens_id">
+				<id column="greens_id" property="greens_id"/>
+			<result column="greens_name" property="greens_name"/>
+			</association>
+		</collection>
+	</resultMap>
+	
+	<!-- 查询所有用户 -->
+	<select id="findAll" resultMap="orderResultMap">
+		SELECT o.order_id,o.order_code,o.order_phone,o.order_realname,o.order_address, 
+			o.order_total,o.order_time,o.order_status,u.user_id,u.user_name,i.orderitem_id,
+			i.orderitem_count,i.orderitem_total,g.greens_id,g.greens_name
+		FROM orders o 
+		LEFT JOIN users u ON o.user_id=u.user_id 
+		LEFT JOIN orderitems i ON o.order_id=i.order_id 
+		LEFT JOIN greens g ON g.greens_id=i.greens_id
+	</select>
+	
+</mapper>

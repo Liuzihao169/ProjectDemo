@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kuake.dao.DictMapper">
+
+	<!-- 通过字典编号查询字典表，返回Dictd对象的List集合 -->
+	<select id="findDictByCode" parameterType="string" resultType="com.kuake.pojo.Dict">
+		select * from dict a where a.dict_status=1 and a.dict_code=#{code} order by a.dict_type
+	</select>
+	
+	<!-- 查询所有字典表信息 -->
+	<select id="findAll" resultType="com.kuake.pojo.Dict">
+		SELECT * FROM dict
+	</select>
+	
+	<!-- 通过字典表ID查询 -->
+	<select id="findDictById" parameterType="long" resultType="com.kuake.pojo.Dict">
+		
+	</select>
+	
+	<!-- 向字典表添加一条记录 -->
+	<insert id="addDict" parameterType="com.kuake.pojo.Dict">
+		INSERT INTO dict(dict_code,dict_type,dict_type_value,dict_type_code,dict_status) 
+		VALUES(#{dict_code},#{dict_type},#{dict_type_value},#{dict_type_code},#{dict_status})
+		
+	</insert>
+	
+	<!-- 更新字典表的一条记录 -->
+	<update id="updateDict" parameterType="com.kuake.pojo.Dict">
+		
+	</update>
+	
+	<!-- 通过字典表ID删除一条记录 -->
+	<delete id="deleteDict" parameterType="long">
+		DELETE FROM dict WHERE dict_id=#{dict_id}
+	</delete>
+	
+</mapper>
